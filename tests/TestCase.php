@@ -2,9 +2,9 @@
 
 namespace Deployer\WebsystemDeployer\Tests;
 
+use Deployer\WebsystemDeployer\WebsystemDeployerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Deployer\WebsystemDeployer\WebsystemDeployerServiceProvider;
 
 class TestCase extends Orchestra
 {

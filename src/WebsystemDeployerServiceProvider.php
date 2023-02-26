@@ -2,9 +2,9 @@
 
 namespace Deployer\WebsystemDeployer;
 
+use Deployer\WebsystemDeployer\Commands\WebsystemDeployerCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Deployer\WebsystemDeployer\Commands\WebsystemDeployerCommand;
 
 class WebsystemDeployerServiceProvider extends PackageServiceProvider
 {
