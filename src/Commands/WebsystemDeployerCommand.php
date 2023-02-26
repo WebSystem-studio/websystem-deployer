@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Deployer\WebsystemDeployer\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class WebsystemDeployerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'websystem-deployer';
 
     public $description = 'My command';
 
