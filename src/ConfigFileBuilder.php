@@ -3,7 +3,6 @@
 namespace Deployer\WebsystemDeployer;
 
 use Illuminate\Support\Arr;
-use Deployer\WebsystemDeployer\ConfigFile;
 
 class ConfigFileBuilder
 {
@@ -36,7 +35,7 @@ class ConfigFileBuilder
             'example.com' => [
                 'deploy_path' => '/var/www/example.com',
                 'user' => 'root',
-            ]
+            ],
         ],
         'localhost' => [],
         'include' => [],
@@ -74,7 +73,6 @@ class ConfigFileBuilder
             Arr::set($this->configs, $key, $array);
         }
 
-
         return $this;
     }
 
@@ -94,6 +92,7 @@ class ConfigFileBuilder
 
         if ($key !== 'name') {
             $this->configs['hosts'][$hostname][$key] = $value;
+
             return $this;
         }
 
@@ -111,7 +110,7 @@ class ConfigFileBuilder
     public function useForge($phpVersion = self::DEFAULT_PHP_VERSION): ConfigFileBuilder
     {
         $this->reloadFpm($phpVersion);
-        $this->setHost('deploy_path', '/home/forge/' . $this->getHostname());
+        $this->setHost('deploy_path', '/home/forge/'.$this->getHostname());
         $this->setHost('user', 'forge');
 
         return $this;

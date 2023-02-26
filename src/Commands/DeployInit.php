@@ -4,18 +4,18 @@ namespace Deployer\WebsystemDeployer\Commands;
 
 use Deployer\WebsystemDeployer\ConfigFileBuilder;
 
-
 class DeployInit extends BaseCommand
 {
     protected $builder;
 
-    protected $signature = "deploy:init
+    protected $signature = 'deploy:init
         {hostname? : The hostname of the deployment server}
         {--f|forge : Whether the server is maintained by Laravel Forge}
         {--a|all : Generate configuration with all possible options}
-    ";
+    ';
 
     protected $useDeployerOptions = false;
+
     protected $description = 'Generate a deploy.php configuration file';
 
     public function __construct(ConfigFileBuilder $builder)
@@ -36,7 +36,7 @@ class DeployInit extends BaseCommand
 
     public function configFileExists()
     {
-        $filepath = base_path('config' . DIRECTORY_SEPARATOR . 'deploy.php');
+        $filepath = base_path('config'.DIRECTORY_SEPARATOR.'deploy.php');
 
         return file_exists($filepath)
             && ! $this->confirm("<fg=red;options=bold>A configuration file already exists.</>\nAre you sure you want to continue and override it?");
@@ -48,7 +48,7 @@ class DeployInit extends BaseCommand
             return $this->allOptions();
         }
 
-        $this->welcomeMessage('🚀',  'Let\'s configure your deployment!');
+        $this->welcomeMessage('🚀', 'Let\'s configure your deployment!');
         $this->defineRepositoryUrl();
         $this->defineHostname();
         $this->defineForge();
@@ -117,9 +117,9 @@ class DeployInit extends BaseCommand
             return $this->builder->useForge($this->askPhpVersion());
         }
 
-        if($this->confirm('Do you want to reload php-fpm after each deployment?')) {
+        if ($this->confirm('Do you want to reload php-fpm after each deployment?')) {
             return $this->builder->reloadFpm($this->askPhpVersion());
-        };
+        }
     }
 
     public function askPhpVersion()
