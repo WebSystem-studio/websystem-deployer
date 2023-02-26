@@ -3,7 +3,6 @@
 namespace Deployer\WebsystemDeployer;
 
 use Deployer\WebsystemDeployer\Commands\Deploy;
-use Deployer\WebsystemDeployer\Commands\WebsystemDeployerCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

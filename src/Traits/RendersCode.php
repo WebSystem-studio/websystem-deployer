@@ -14,7 +14,7 @@ trait RendersCode
             case 'string':
                 return (Str::startsWith($value, 'env(') && $allow_env)
                     ? $value
-                    : "'" . addslashes($value) . "'";
+                    : "'".addslashes($value)."'";
             case 'boolean':
                 return $value ? 'true' : 'false';
             default:
@@ -34,6 +34,7 @@ trait RendersCode
         $arrayContent = collect($value)
             ->map(function ($v, $k) use ($indent, $allow_env, $indentChildren) {
                 $v = $this->render($v, $indent + 1, $allow_env);
+
                 return is_string($k)
                     ? "$indentChildren'$k' => $v"
                     : "$indentChildren$v";

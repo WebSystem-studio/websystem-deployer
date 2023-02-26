@@ -2,9 +2,9 @@
 
 namespace Deployer\WebsystemDeployer;
 
-use Illuminate\Support\Arr;
-use Illuminate\Filesystem\Filesystem;
 use Deployer\WebsystemDeployer\Traits\RendersCode;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 
 class ConfigFile
 {
@@ -28,6 +28,7 @@ class ConfigFile
     ];
 
     protected $configs;
+
     protected $filesystem;
 
     public function __construct($configs)
@@ -57,7 +58,7 @@ class ConfigFile
      *
      * @return string
      */
-    public function store($path = 'config' . DIRECTORY_SEPARATOR . 'deploy.php')
+    public function store($path = 'config'.DIRECTORY_SEPARATOR.'deploy.php')
     {
         $path = base_path($path);
 
@@ -79,13 +80,13 @@ class ConfigFile
     public function __toString()
     {
         $ds = DIRECTORY_SEPARATOR;
-        $stub = $this->filesystem->get(__DIR__ . "{$ds}stubs{$ds}config.stub");
+        $stub = $this->filesystem->get(__DIR__."{$ds}stubs{$ds}config.stub");
 
         foreach (static::REPLACEMENT_KEYS as $key) {
             $indent = substr_count($key, '.') + 1;
             $value = $this->render(Arr::get($this->configs, $key), $indent);
-            $stub = preg_replace('/{{' . $key . '}}/', $value, $stub);
-        };
+            $stub = preg_replace('/{{'.$key.'}}/', $value, $stub);
+        }
 
         return $stub;
     }

@@ -2,9 +2,9 @@
 
 namespace Deployer\WebsystemDeployer;
 
-use Illuminate\Support\Str;
-use Illuminate\Filesystem\Filesystem;
 use Deployer\WebsystemDeployer\Traits\RendersCode;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 
 class DeployFile
 {
@@ -34,6 +34,7 @@ class DeployFile
     ];
 
     protected $data;
+
     protected $filesystem;
 
     public function __construct($data = [])
@@ -62,7 +63,7 @@ class DeployFile
         $path = "vendor{$ds}lorisleiva{$ds}laravel-deployer{$ds}.build{$ds}deploy.php";
         $dir = dirname(base_path($path));
 
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
 
@@ -74,12 +75,12 @@ class DeployFile
     public function __toString()
     {
         $ds = DIRECTORY_SEPARATOR;
-        $stub = $this->filesystem->get(__DIR__ . "{$ds}stubs{$ds}deploy.stub");
+        $stub = $this->filesystem->get(__DIR__."{$ds}stubs{$ds}deploy.stub");
 
         foreach (static::REPLACEMENT_KEYS as $key) {
-            $value = call_user_func([$this, 'render' . ucfirst($key)]);
-            $stub = preg_replace('/{{' . $key . '}}/', $value, $stub);
-        };
+            $value = call_user_func([$this, 'render'.ucfirst($key)]);
+            $stub = preg_replace('/{{'.$key.'}}/', $value, $stub);
+        }
 
         // Trim empty lines at the end of file.
         $stub = preg_replace('/\n+$/', '', $stub);
@@ -93,6 +94,7 @@ class DeployFile
     protected function renderDefault()
     {
         $default = $this->data->get('default', 'basic');
+
         return "set('strategy', '$default');";
     }
 
@@ -114,7 +116,7 @@ class DeployFile
                 })->implode("\n");
             })
             ->map(function ($tasks, $strategy) {
-                $title = Str::title(str_replace('_', ' ', $strategy)) . ' Strategy';
+                $title = Str::title(str_replace('_', ' ', $strategy)).' Strategy';
                 $slug = Str::snake($strategy);
 
                 return "desc('$title');\ntask('strategy:$slug', [\n$tasks\n]);";
@@ -127,6 +129,7 @@ class DeployFile
         return $this->get('options')
             ->map(function ($value, $key) {
                 $value = $this->render($value, 0, false);
+
                 return "set('$key', $value);";
             })
             ->implode("\n");
@@ -175,11 +178,13 @@ class DeployFile
             if ($key === 'sshOptions' && is_array($value)) {
                 return collect($value)->map(function ($sshValue, $sshKey) {
                     $sshValue = $this->render($sshValue, 1, false);
+
                     return "    ->addSshOption('$sshKey', $sshValue)";
                 })->implode("\n");
             }
 
             $value = $this->render($value, 1, false);
+
             return in_array($key, static::SPECIAL_HOST_KEYS)
                 ? "    ->$key($value)"
                 : "    ->set('$key', $value)";

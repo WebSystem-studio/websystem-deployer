@@ -2,10 +2,10 @@
 
 namespace Deployer\WebsystemDeployer\Commands;
 
-use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 use Deployer\WebsystemDeployer\ConfigFile;
 use Deployer\WebsystemDeployer\Traits\ParsesCliParameters;
+use Illuminate\Console\Command;
+use Symfony\Component\Process\Process;
 
 class BaseCommand extends Command
 {
@@ -21,7 +21,7 @@ class BaseCommand extends Command
 
     public function __construct()
     {
-        $deployerOptions = "
+        $deployerOptions = '
             {--s|strategy= : Default deployement strategy}
             {--p|parallel : Run tasks in parallel}
             {--l|limit= : How many host to run in parallel?}
@@ -34,7 +34,7 @@ class BaseCommand extends Command
             {--tag= : Tag to deploy}
             {--revision= : Revision to deploy}
             {--branch= : Branch to deploy}
-        ";
+        ';
 
         if ($this->useDeployerOptions) {
             $this->signature .= $deployerOptions;
@@ -51,20 +51,22 @@ class BaseCommand extends Command
         $this->providedStrategy = $this->parameters->pull('--strategy');
 
         // Force Ansi mode if not specified.
-        if (!$this->parameters->contains('--ansi') && !$this->parameters->contains('--no-ansi')) {
+        if (! $this->parameters->contains('--ansi') && ! $this->parameters->contains('--no-ansi')) {
             $this->parameters->push('--ansi');
         }
 
         // Fetch deploy config file.
-        if (!$deployFile = $this->getDeployFile()) {
-            $this->error("config/deploy.php file not found.");
-            $this->error("Please run `php artisan deploy:init` to get started.");
+        if (! $deployFile = $this->getDeployFile()) {
+            $this->error('config/deploy.php file not found.');
+            $this->error('Please run `php artisan deploy:init` to get started.');
+
             return;
         }
 
         // Delegate to DeployerPHP with the right parameters.
         $parameters = $this->getParametersAsString($this->parameters);
-        $depBinary = 'vendor' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'dep';
+        $depBinary = 'vendor'.DIRECTORY_SEPARATOR.'bin'.DIRECTORY_SEPARATOR.'dep';
+
         return $this->process("$depBinary --file=$deployFile $command $parameters");
     }
 
@@ -88,7 +90,7 @@ class BaseCommand extends Command
 
     public function getConfigFile()
     {
-        $filepath = base_path('config' . DIRECTORY_SEPARATOR . 'deploy.php');
+        $filepath = base_path('config'.DIRECTORY_SEPARATOR.'deploy.php');
 
         if (file_exists($filepath)) {
             return new ConfigFile(
@@ -99,7 +101,7 @@ class BaseCommand extends Command
 
     public function getCustomDeployFile()
     {
-        if (!$configFile = $this->getConfigFile()) {
+        if (! $configFile = $this->getConfigFile()) {
             return file_exists(base_path('deploy.php')) ? base_path('deploy.php') : null;
         }
 
