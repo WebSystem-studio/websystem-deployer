@@ -5,9 +5,17 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/websystem-studio/websystem-deployer/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/websystem-studio/websystem-deployer/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/websystem-studio/websystem-deployer.svg?style=flat-square)](https://packagist.org/packages/websystem-studio/websystem-deployer)
 
+# WebSystem Deployer
+
+WebSystem Deployer is a Laravel package that allows you to deploy your Laravel applications with ease.
+
+## Description
+
+WebSystem Deployer is a clone of the [laravel-deployer](https://github.com/lorisleiva/laravel-deployer/tree/old) package, specifically the old version. It provides similar functionality for deploying Laravel applications, but with a few modifications that make it suitable for the needs of the WebSystem Studio.
+
 ## Installation
 
-You can install the package via composer:
+To install WebSystem Deployer, simply run the following command:
 
 ```bash
 composer require websystem-studio/websystem-deployer
@@ -27,8 +35,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Martin Halaj](https://github.com/WebSystem-studio)
-- [All Contributors](../../contributors)
+WebSystem Deployer is a clone of the [laravel-deployer](https://github.com/lorisleiva/laravel-deployer/tree/old) package, created by [Loris Leiva](https://lorisleiva.com/). The original package was licensed under the [MIT License](https://github.com/lorisleiva/laravel-deployer/tree/old/LICENSE.md).
 
 ## License
 
