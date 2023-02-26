@@ -80,7 +80,7 @@ class ConfigFile
     public function __toString()
     {
         $ds = DIRECTORY_SEPARATOR;
-        $stub = $this->filesystem->get(__DIR__."{$ds}stubs{$ds}config.stub");
+        $stub = $this->filesystem->get(__DIR__."{$ds}Stubs{$ds}config.stub");
 
         foreach (static::REPLACEMENT_KEYS as $key) {
             $indent = substr_count($key, '.') + 1;

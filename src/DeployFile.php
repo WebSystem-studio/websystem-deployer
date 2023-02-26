@@ -75,7 +75,7 @@ class DeployFile
     public function __toString()
     {
         $ds = DIRECTORY_SEPARATOR;
-        $stub = $this->filesystem->get(__DIR__."{$ds}stubs{$ds}deploy.stub");
+        $stub = $this->filesystem->get(__DIR__."{$ds}Stubs{$ds}deploy.stub");
 
         foreach (static::REPLACEMENT_KEYS as $key) {
             $value = call_user_func([$this, 'render'.ucfirst($key)]);
