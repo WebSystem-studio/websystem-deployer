@@ -82,10 +82,8 @@ class DeployFile
             $stub = preg_replace('/{{' . $key . '}}/', $value, $stub);
         }
 
-        // Trim empty lines at the end of file.
         $stub = preg_replace('/\n+$/', '', $stub);
 
-        // Ensure stub has no more than two consecutive empty lines.
         $stub = preg_replace('/\n{3,}/', "\n\n", $stub);
 
         return $stub;
