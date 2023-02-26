@@ -1,4 +1,4 @@
-# websystem-deployer fore Laravel
+# websystem-deployer for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/websystem-studio/websystem-deployer.svg?style=flat-square)](https://packagist.org/packages/websystem-studio/websystem-deployer)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/websystem-studio/websystem-deployer/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/websystem-studio/websystem-deployer/actions?query=workflow%3Arun-tests+branch%3Amain)
