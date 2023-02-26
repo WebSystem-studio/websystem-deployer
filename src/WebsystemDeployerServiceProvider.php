@@ -2,6 +2,7 @@
 
 namespace Deployer\WebsystemDeployer;
 
+use Deployer\WebsystemDeployer\Commands\Deploy;
 use Deployer\WebsystemDeployer\Commands\WebsystemDeployerCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -20,6 +21,6 @@ class WebsystemDeployerServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('create_websystem-deployer_table')
-            ->hasCommand(WebsystemDeployerCommand::class);
+            ->hasCommand(Deploy::class);
     }
 }
