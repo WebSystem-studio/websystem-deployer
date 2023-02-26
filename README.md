@@ -1,4 +1,4 @@
-# This is my package websystem-deployer
+# websystem-deployer fore Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/websystem-studio/websystem-deployer.svg?style=flat-square)](https://packagist.org/packages/websystem-studio/websystem-deployer)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/websystem-studio/websystem-deployer/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/websystem-studio/websystem-deployer/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -21,45 +21,6 @@ You can install the package via composer:
 
 ```bash
 composer require websystem-studio/websystem-deployer
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="websystem-deployer-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="websystem-deployer-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="websystem-deployer-views"
-```
-
-## Usage
-
-```php
-$websystemDeployer = new Deployer\WebsystemDeployer();
-echo $websystemDeployer->echoPhrase('Hello, Deployer!');
-```
-
-## Testing
-
-```bash
-composer test
 ```
 
 ## Changelog
